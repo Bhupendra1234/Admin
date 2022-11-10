@@ -230,18 +230,20 @@ const CricketWordSearch = () => {
         }
         return container;
     }
-    const removeAllstar =()=>{
+    const removeAllstar = () => {
         let container = [...highlightedData];
         for (let i = 0; i < ROWS; i++) {
             for (let j = 0; j < COLS; j++) {
-                 container[i][j] = container[i][j].replaceAll('*','');
+                container[i][j] = container[i][j].replaceAll('*', '');
             }
         }
     }
 
     const searchCricketWord = () => {
         setHighlightedData([])
-        removeAllstar(highlightedData)
+        // for at a time one search  if you un comment this changes then we can search one word at time
+        // removeAllstar(highlightedData)
+
         if ((dataStore && dataStore.length) && (word && word.length)) {
             let lefToRight = leftToRightSearch(dataStore) || []
             let topToBottm = topToBottomSearch(dataStore) || []
@@ -250,18 +252,18 @@ const CricketWordSearch = () => {
             let lowerDiagonal = lowerDiagonalSearch(dataStore) || []
             let upperDiagonal = upperDiagonalSearch(dataStore) || []
             let indexs = [];
-           if(word.length ===lefToRight.length)
-            indexs.push(lefToRight);
-            if(word.length ===rightToLeft.length)
-            indexs.push(rightToLeft)
-            if(word.length ===topToBottm.length)
-            indexs.push(topToBottm);
-            if(word.length ===bottomToTop.length)
-            indexs.push(bottomToTop);
-            if(word.length ===lowerDiagonal.length)
-            indexs.push(lowerDiagonal)
-            if(word.length ===upperDiagonal.length)
-            indexs.push(upperDiagonal);
+            if (word.length === lefToRight.length)
+                indexs.push(lefToRight);
+            if (word.length === rightToLeft.length)
+                indexs.push(rightToLeft)
+            if (word.length === topToBottm.length)
+                indexs.push(topToBottm);
+            if (word.length === bottomToTop.length)
+                indexs.push(bottomToTop);
+            if (word.length === lowerDiagonal.length)
+                indexs.push(lowerDiagonal)
+            if (word.length === upperDiagonal.length)
+                indexs.push(upperDiagonal);
             setHighlightedData(highlightSelectedWord(indexs))
             setCount(count + 1)
         } else {
