@@ -10,6 +10,7 @@ const CricketWordSearch = () => {
     const [word, setWord] = useState(null)
     const [highlightedData, setHighlightedData] = useState([])
     const [count, setCount] = useState(0);
+    const [showError,setShowError]  = useState(false)
 
     const GenerateRandomdata = () => {
         const data = []
@@ -266,6 +267,12 @@ const CricketWordSearch = () => {
                 indexs.push(upperDiagonal);
             setHighlightedData(highlightSelectedWord(indexs))
             setCount(count + 1)
+            if(word.length >indexs.length){ 
+                setShowError(true)
+                setTimeout(()=>{
+                 setShowError(false)
+                },[3000])
+            }
         } 
     }
     return (
@@ -275,7 +282,8 @@ const CricketWordSearch = () => {
                 <button className='btn btn-lg border-2 bg-green-500 text-white font-semibold py-2 px-3 rounded-lg' onClick={searchCricketWord}>Submit</button>
                 <button className='btn btn-lg border-2 bg-amber-700 text-white font-semibold py-2 px-3 rounded-lg' onClick={GenerateRandomdata}>Generate New</button>
             </div>
-            <div className='border-2 mt-5 p-4'>
+            <div className='border-2 mt-5 p-4 text-center'>
+              {showError &&   <p className='font-semibold  bg-red-400 p-2 inline my-4 '>Given word doesn`t exist</p> }
                 <Grid data={highlightedData} />
             </div>
         </div>
