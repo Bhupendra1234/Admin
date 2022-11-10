@@ -266,15 +266,14 @@ const CricketWordSearch = () => {
                 indexs.push(upperDiagonal);
             setHighlightedData(highlightSelectedWord(indexs))
             setCount(count + 1)
-        } else {
-            GenerateRandomdata()
-        }
+        } 
     }
     return (
         <div className='border-2 border-solid p-5'>
             <div className='flex justify-center items-center space-x-10'>
                 <input type="text" className='border-2 p-2 w-[400px]' onChange={(e) => setWord(e.target.value.toUpperCase())} />
-                <button className='btn btn-lg border-2 bg-green-500 py-2 px-3 rounded-lg' onClick={searchCricketWord}>Submit</button>
+                <button className='btn btn-lg border-2 bg-green-500 text-white font-semibold py-2 px-3 rounded-lg' onClick={searchCricketWord}>Submit</button>
+                <button className='btn btn-lg border-2 bg-amber-700 text-white font-semibold py-2 px-3 rounded-lg' onClick={GenerateRandomdata}>Generate New</button>
             </div>
             <div className='border-2 mt-5 p-4'>
                 <Grid data={highlightedData} />
